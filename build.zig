@@ -8,12 +8,21 @@ pub fn build(b: *std.Build) void {
         .root_source_file = b.path("baka_sdk/baka.zig"),
         .target = target,
     });
+    
+    const elf_mod = b.addModule("elf", .{
+        .root_source_file = b.path("src/loader/elf_loader.zig"),
+        .target = target,
+        .imports = &.{
+            .{ .name = "baka", .module = baka_mod },  
+        },
+    });
 
     const tsun_mod = b.addModule("tsundere", .{
         .root_source_file = b.path("src/tsundere.zig"),
         .target = target,
         .imports = &.{
             .{ .name = "baka", .module = baka_mod },  
+            .{ .name = "elf", .module = elf_mod },  
         },
         });
     const exe = b.addExecutable(.{
