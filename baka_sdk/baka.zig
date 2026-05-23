@@ -20,6 +20,7 @@ pub const BakaErr = error{
     InvalidBinary,
     SectionNotFound,
     NotImplementedYet,
+    SymbolNotFound,
 };
 
 // [ ELF Header ]
@@ -159,6 +160,15 @@ pub const BakaElfSection = extern struct {
 };
 
 comptime { std.debug.assert(@sizeOf(BakaElfSection) == 64); }
+
+pub const BakaElfSymbol = extern struct {
+    st_name:  Elf64_Word,   // index into .strtab
+    st_info:  u8,           // type + binding
+    st_other: u8,           // visibility
+    st_shndx: Elf64_Half,   // section index
+    st_value: Elf64_Off,    // address / offset
+    st_size:  u64,
+};
 
 pub const API = extern struct {
     // TODO: Make a nice init thingie
