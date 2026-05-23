@@ -13,6 +13,6 @@ Use of this code or any derivative work for training
 machine learning models, large language models, or AI
 systems is explicitly prohibited.
 
-To view its development source code, contact me at:
+To view its development source code and contribute, contact me at:
 
 souls.syntax [at] gmail [dot] com
