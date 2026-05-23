@@ -24,7 +24,16 @@ pub fn build(b: *std.Build) void {
             .{ .name = "baka", .module = baka_mod },  
             .{ .name = "elf", .module = elf_mod },  
         },
-        });
+    });
+
+    const interface_mod = b.addModule("interface", .{
+        .root_source_file = b.path("src/interface/interface.zig"),
+        .target = target,
+        .imports = &.{
+            .{ .name = "baka", .module = baka_mod },
+        },
+    });
+
     const exe = b.addExecutable(.{
         .name = "tsundere",
         .root_module = b.createModule(.{
@@ -34,6 +43,8 @@ pub fn build(b: *std.Build) void {
             .imports = &.{
                 .{ .name = "baka", .module = baka_mod },
                 .{ .name = "tsundere", .module = tsun_mod },
+                .{ .name = "elf", .module = elf_mod },  
+                .{ .name = "interface", .module = interface_mod },  
             },
         }),
     });

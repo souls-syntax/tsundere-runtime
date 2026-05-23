@@ -21,6 +21,7 @@ pub const BakaErr = error{
     SectionNotFound,
     NotImplementedYet,
     SymbolNotFound,
+    MMapFailed,
 };
 
 // [ ELF Header ]

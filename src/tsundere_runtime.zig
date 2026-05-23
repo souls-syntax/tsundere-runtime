@@ -2,7 +2,8 @@
 const baka = @import("baka");
 const std = @import("std");
 const tsun = @import("tsundere");
-
+const elf = @import("elf");
+const interface = @import("interface");
 
 pub fn main(init: std.process.Init) !void {
     // Fuck zig so quick std change atleast keep prev apis usable bastards. fuck you.
@@ -18,13 +19,23 @@ pub fn main(init: std.process.Init) !void {
     const stat = try fd.stat(init.io);
     const file_size = stat.size;
 
-    const binary = try std.posix.mmap(
+    const binary = try interface.interface_mmap(
         null, 
         @intCast(file_size), 
-        .{ .READ = true, .EXEC = true },
+        .{ .READ = true },
         .{ .TYPE = .PRIVATE }, 
         fd.handle, 
         0
     );
+    
+    const page_size = std.heap.pageSize();
+    const text_shdr = try elf.get_a_header(binary, ".text");
+    const text_start = std.mem.alignBackward(usize, @as(usize, text_shdr.sh_offset), page_size);
+    const text_end = std.mem.alignForward(usize, @as(usize, text_shdr.sh_offset + text_shdr.sh_size) , page_size);
+    try interface.interface_mprotect(
+            binary.ptr + text_start,
+            text_end - text_start,
+            .{ .READ = true, .EXEC = true }
+        );
     try tsun.load_binaries_and_run(binary);
 }
