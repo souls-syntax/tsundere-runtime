@@ -17,8 +17,8 @@ pub fn build(b: *std.Build) void {
         },
     });
 
-    const tsun_mod = b.addModule("tsundere", .{
-        .root_source_file = b.path("src/tsundere.zig"),
+    const loader_mod = b.addModule("loader", .{
+        .root_source_file = b.path("src/loader/loader.zig"),
         .target = target,
         .imports = &.{
             .{ .name = "baka", .module = baka_mod },  
@@ -26,8 +26,8 @@ pub fn build(b: *std.Build) void {
         },
     });
 
-    const interface_mod = b.addModule("interface", .{
-        .root_source_file = b.path("src/interface/interface.zig"),
+    const os_mod = b.addModule("os", .{
+        .root_source_file = b.path("src/os/os.zig"),
         .target = target,
         .imports = &.{
             .{ .name = "baka", .module = baka_mod },
@@ -42,9 +42,9 @@ pub fn build(b: *std.Build) void {
             .optimize = optimize,
             .imports = &.{
                 .{ .name = "baka", .module = baka_mod },
-                .{ .name = "tsundere", .module = tsun_mod },
+                .{ .name = "loader", .module = loader_mod },
                 .{ .name = "elf", .module = elf_mod },  
-                .{ .name = "interface", .module = interface_mod },  
+                .{ .name = "os", .module = os_mod },  
             },
         }),
     });

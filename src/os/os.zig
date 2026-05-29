@@ -9,7 +9,7 @@ const MAP = std.posix.MAP;
 const fd_t = std.posix.fd_t;
 const MMapError = std.posix.MMapError;
 
-pub fn interface_mprotect(address: [*]const u8, length: usize, protection: PROT) !void {
+pub fn os_mprotect(address: [*]const u8, length: usize, protection: PROT) !void {
 
     if ( builtin.target.os.tag  == .linux) {
         _ = std.os.linux.mprotect(@alignCast(address), length, protection);
@@ -21,7 +21,7 @@ pub fn interface_mprotect(address: [*]const u8, length: usize, protection: PROT)
     return baka.BakaErr.NotImplementedYet;
 }
 
-pub fn interface_mmap(ptr: ?[*]align(page_size_min) u8, length: usize, prot: PROT, flags: MAP, fd: fd_t, offset: u64) baka.BakaErr![]align(page_size_min) u8 {
+pub fn os_mmap(ptr: ?[*]align(page_size_min) u8, length: usize, prot: PROT, flags: MAP, fd: fd_t, offset: u64) baka.BakaErr![]align(page_size_min) u8 {
     if (builtin.target.os.tag == .linux) {
         return std.posix.mmap(ptr, length, prot, flags, fd, offset) catch return baka.BakaErr.MMapFailed;
     }

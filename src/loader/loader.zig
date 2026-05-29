@@ -13,28 +13,6 @@ fn tsun_text_render(x: i32, y: i32, text: [*:0]const u8) callconv(.c) void {
     std.debug.print("rendering at {}, {},: {s}\n", .{x, y, text});
 } 
 
-// pub const BakaElfSymbol = extern struct {
-//     st_name:  Elf64_Word,   // index into .strtab
-//     st_info:  u8,           // type + binding
-//     st_other: u8,           // visibility
-//     st_shndx: Elf64_Half,   // section index
-//     st_value: Elf64_Off,    // address / offset
-//     st_size:  u64,
-// };
-
-// pub const BakaElfSection = extern struct {
-//     sh_name      : Elf64_Word,   // Section name (string tbl index)
-//     sh_type      : Elf64_Word,   // Section type
-//     sh_flags     : Elf64_Xword,  // Section flags
-//     sh_addr      : Elf64_Addr,   // Section virtual addr at execution
-//     sh_offset    : Elf64_Off,    // Section file offset
-//     sh_size      : Elf64_Xword,  // Section size in bytes
-//     sh_link      : Elf64_Word,   // Link to another section
-//     sh_info      : Elf64_Word,   // Additional section information
-//     sh_addralign : Elf64_Xword,  // Section alignment
-//     sh_entsize   : Elf64_Xword,  // Entry size if section holds table
-// };
-//
 pub fn load_binaries_and_run(binary : []u8) !void {
     var header : *const baka.BakaHeader = @ptrCast(@alignCast(binary.ptr));
     var symbol_baka_main : ?*const baka.BakaElfSymbol = null;
