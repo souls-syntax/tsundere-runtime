@@ -9,7 +9,7 @@ Why it must exist:
   You type baka://tsun.social. Something has to fetch that binary,
   verify it isn't garbage, allocate memory for it, and jump to
   its entry point. That's this module.
-
+```C
 The BakaHeader (from actual blog code):
   __attribute__((section(".baka_header")))
   BakaHeader header = {
@@ -18,7 +18,7 @@ The BakaHeader (from actual blog code):
       .memory_mb    = 64,           // "give me this much arena"
       .name         = "tsun_feed",
   };
-
+```
   Magic number purpose: To verify if this is a baka.
 
 The shadow header:
