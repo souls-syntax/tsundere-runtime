@@ -1,0 +1,35 @@
+* bd122c9  Aakarsh Kashyap 24 hours ago HEAD -> main, origin/main, origin/HEAD, codeberg/main
+| Module specification
+| 
+* 9352bc8  Aakarsh Kashyap 7 days ago 
+| We have some basic ABI thingie also now enforces exec perm section wise
+| 
+* fac8d4f  Aakarsh Kashyap 7 days ago github_public/main
+| Update contact information for code contribution
+| 
+* cdc31bf  Aakarsh Kashyap 7 days ago 
+| ELF loader works now we support both baka and elf file format
+| 
+* 1b1700c  Aakarsh Kashyap 8 days ago 
+| Elf paring started and is stubbed fuck writing parsers is annoying
+| 
+* e37e8ce  Aakarsh Kashyap 8 days ago 
+| Initial file loader works for baka file format
+| 
+* 6a05160  Aakarsh Kashyap 7 days ago 
+| Clarify contact information for source code access
+| 
+* c63b2b5  Aakarsh Kashyap 8 days ago 
+| Update README with disclaimer and remove copyright
+| 
+* 67f3f4f  Aakarsh Kashyap 9 days ago 
+| Refactor README for better readability
+| 
+* b490b17  Aakarsh Kashyap 9 days ago 
+| Update README with contact information
+| 
+* af9338a  Aakarsh Kashyap 9 days ago 
+| Update README with copyright and usage terms
+| 
+* c31c952  Aakarsh Kashyap 9 days ago 
+  Initial commit
